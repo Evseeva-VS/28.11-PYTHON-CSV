@@ -93,6 +93,11 @@ def insert_otchisleni(student):
         print(e)
         pass
 
+# Сводка по курсу/группе
+def analytic(type, val):
+    global csv_file
+    print(f'Количество студентов: {len(list(filter(lambda x: x[type] == val, csv_file)))}')
+
 # Сохранение отчисленных студентов
 def save_otchisleni():
     global csv_otchisleni_file

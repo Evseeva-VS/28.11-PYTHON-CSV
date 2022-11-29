@@ -1,4 +1,4 @@
-from csv_csv import file_open, insert, drop_by_arg, find, go_to_next_curs, find_adults, save
+from csv_csv import file_open, insert, drop_by_arg, find, go_to_next_curs, find_adults, analytic, save
 
 MENU = {
     '1': 'Открыть файл',
@@ -39,7 +39,15 @@ while True:
     elif command == '6':
         find_adults()
     elif command == '7':
-        print(7)
+        type = input('Курс или группа: ')
+        if (type.lower() == 'курс'):
+            val = input('Какой: ')
+        elif (type.lower() == 'группа'):
+            val = input('Какая: ')
+        else:
+            print('Неверно указан тип!')
+            continue
+        analytic(type.lower(), val)
     elif command == '8':
         print(8)
     elif command == '9':
