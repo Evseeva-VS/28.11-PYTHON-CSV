@@ -1,4 +1,4 @@
-from csv_csv import file_open
+from csv_csv import file_open, insert
 
 MENU = {
     '1': 'Открыть файл',
@@ -25,7 +25,7 @@ while True:
     if command == '1':
         file_open()
     elif command == '2':
-        print(2)
+        insert(input('ФИО: '), input('Пол: '), int(input('Возраст: ')), input('Телефон: '), input('Почта: '), input('Группа: '), input('Курс: '))
     elif command == '3':
         print(3)
     elif command == '4':

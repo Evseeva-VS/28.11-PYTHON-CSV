@@ -24,3 +24,17 @@ def file_open():
     # Если не получилось - выводим сообщение об ошибке
     except:
         print('Файл не получилось открыть!', 'Проверьте наличие файла', sep='\n')
+
+# Добавление данных
+def insert(fio, gender, age, tel, email, group, curs):
+    global csv_file
+    try:
+        try:
+            mx = max(csv_file, key=lambda x: int(x['ном']))
+        except:
+            mx = {'ном': 0}
+        csv_file.append({'ном': int(mx['ном']) + 1, 'фио': fio, 'пол': gender, 'возраст': age, 'телефон': tel, 'почта': email, 'группа': group, 'курс': curs})
+    except Exception as e:
+        print('Ошибка при добавленнии новой записи: ', e, sep='\n')
+        return
+    print('Данные добавлены.')
