@@ -1,10 +1,13 @@
 import csv
 
 csv_file = []
+csv_otchisleni_file = []
 fileName = ''
+
 # Открываем csv файл
 def file_open():
     global csv_file
+    global csv_otchisleni_file
     global fileName
     fileName = input('Название файла (по умолчанию data.csv): ')
     # Если файл не указан - задаём значение по умолчанию
@@ -21,6 +24,10 @@ def file_open():
             reader = csv.DictReader(file, delimiter=';')
             for row in reader:
                 csv_file.append(row)
+        with open('data_otchisleni.csv', "r", newline="", encoding="utf-8") as file:
+            reader = csv.DictReader(file, delimiter=';')
+            for row in reader:
+             csv_otchisleni_file.append(row)
         print('Файл открыт. Записей:', len(csv_file))
     # Если не получилось - выводим сообщение об ошибке
     except:
@@ -57,9 +64,44 @@ def find(val, col_name='фио'):
     except Exception as e:
         print('Данные не найдены: ', e, sep='\n')
 
+# Перевести на следующий курс
+def go_to_next_curs():
+    global csv_file
+    try:
+        for index, curs in enumerate(list(map(lambda x: x['курс'], csv_file))):
+            if int(curs) == 5:
+                student = csv_file[index]
+                insert_otchisleni(student)
+                drop_by_arg(student['ном'], 'ном')
+            else:
+                csv_file[index]['курс'] = int(curs)+1
+        print('Студенты переведены!')
+    except Exception as e:
+        print('Не получилось перевести на следующий курс: ', e, sep='\n')  
+
+# Запись отчисленных студентов
+def insert_otchisleni(student):
+    global csv_otchisleni_file
+    try:
+        csv_otchisleni_file.append({'ном': student['ном'], 'фио': student['фио'], 'пол': student['пол'], 'возраст': student['возраст'], 'телефон': student['телефон'], 'почта': student['почта'], 'группа': student['группа'], 'курс': student['курс']})
+    except Exception as e:
+        print(e)
+        pass
+
+# Сохранение отчисленных студентов
+def save_otchisleni():
+    global csv_otchisleni_file
+    print(1)
+    with open('data_otchisleni.csv', "w", encoding="utf-8", newline="") as file:
+            columns = ['ном', 'фио', 'пол', 'возраст', 'телефон', 'почта', 'группа', 'курс']
+            writer = csv.DictWriter(file, delimiter=";", fieldnames=columns)
+            writer.writeheader()
+            writer.writerows(csv_otchisleni_file)
+
 # Сохранение
 def save():
     global fileName
+    global csv_otchisleni_file
     if (fileName == ''):
         print('Файл не выбран!')
         return
@@ -70,5 +112,7 @@ def save():
             writer.writeheader()
             writer.writerows(csv_file)
             print("Данные сохранены!")
+        if len(csv_otchisleni_file) > 0:
+            save_otchisleni()
     except Exception as e:
         print('Ошибка при сохранении: ', e, sep='\n')
