@@ -1,4 +1,4 @@
-from csv_csv import file_open, insert, drop_by_arg, find, go_to_next_curs, save
+from csv_csv import file_open, insert, drop_by_arg, find, go_to_next_curs, find_adults, save
 
 MENU = {
     '1': 'Открыть файл',
@@ -37,7 +37,7 @@ while True:
     elif command == '5':
         go_to_next_curs()
     elif command == '6':
-        print(6)
+        find_adults()
     elif command == '7':
         print(7)
     elif command == '8':

@@ -79,6 +79,11 @@ def go_to_next_curs():
     except Exception as e:
         print('Не получилось перевести на следующий курс: ', e, sep='\n')  
 
+# Вывод совершеннолетних студентов
+def find_adults():
+    global csv_file
+    print(*list(filter(lambda x: int(x['возраст']) >= 18, csv_file)))
+
 # Запись отчисленных студентов
 def insert_otchisleni(student):
     global csv_otchisleni_file
