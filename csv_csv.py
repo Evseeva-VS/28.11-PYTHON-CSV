@@ -50,6 +50,13 @@ def drop_by_arg(val, col_name='фио'):
         return
     print(f'Строка со значением "{val}" столбца "{col_name}" удалена.')
 
+# Поиск
+def find(val, col_name='фио'):
+    try:
+        print(*list(filter(lambda x: x[col_name] == val, csv_file)))
+    except Exception as e:
+        print('Данные не найдены: ', e, sep='\n')
+
 # Сохранение
 def save():
     global fileName

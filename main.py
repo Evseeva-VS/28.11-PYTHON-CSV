@@ -1,4 +1,4 @@
-from csv_csv import file_open, insert, drop_by_arg, save
+from csv_csv import file_open, insert, drop_by_arg, find, save
 
 MENU = {
     '1': 'Открыть файл',
@@ -31,7 +31,9 @@ while True:
         val = input('Значение: ')
         drop_by_arg(val, col_name=col)
     elif command == '4':
-        print(4)
+        col = input('Колонка: ')
+        val = input('Значение: ')
+        find(val, col_name=col)
     elif command == '5':
         print(5)
     elif command == '6':
