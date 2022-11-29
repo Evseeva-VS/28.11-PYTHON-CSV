@@ -1,4 +1,4 @@
-from csv_csv import file_open, insert, drop_by_arg, find, go_to_next_curs, find_adults, analytic, save
+from csv_csv import file_open, insert, drop_by_arg, find, go_to_next_curs, find_adults, analytic, to_string, save
 
 MENU = {
     '1': 'Открыть файл',
@@ -49,7 +49,7 @@ while True:
             continue
         analytic(type.lower(), val)
     elif command == '8':
-        print(8)
+        to_string()
     elif command == '9':
         save()
     elif command == '0':

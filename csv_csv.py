@@ -108,6 +108,17 @@ def save_otchisleni():
             writer.writeheader()
             writer.writerows(csv_otchisleni_file)
 
+def to_string():
+    global csv_file
+    for el in csv_file: 
+        print('{0}: {1} учится в группе {2} на {3} курсе, номер студ. билета: {4}'.format(
+            'Студент' if el['пол'].lower()=='мужской' else 'Студента',
+            el['фио'],
+            el['группа'],
+            el['курс'],
+            el['ном']
+        ))
+
 # Сохранение
 def save():
     global fileName
